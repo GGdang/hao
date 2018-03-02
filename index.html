@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--bootstrao的CSS掛載-->  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--自己的CSS掛載-->
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+<div class="company">
+<!--
+    <p class="scroll">{{scrollTop}}</p>
+    <div class="window">
+        <p>{{bodyWH.w}}</p>
+        <p>{{bodyWH.h}}</p>
+    </div>
+-->
+    <div class="top-btn" @click="moveTop">
+        <img src="images/icon/rocket_up.png" alt="" width="50px">
+    </div>
+    <div class="right-list">
+            <div class="right-button" v-on:click="rightButton1">
+                <img src="images/icon/right_button.png" alt="" srcset="" width="50">
+                <div class="right-button-one">
+                    <p>登入帳號</p>
+                    <ul>
+                        <li><a href="" >登入帳號</a></li> 
+                        <li><a href="">註冊帳號</a></li> 
+                    </ul>
+                </div>
+            </div>
+            <div class="right-button" v-on:click="rightButton2">
+                <img src="images/icon/right_button.png" alt="" srcset="" width="50">
+                <div class="right-button-one">
+                    <p>Language</p>
+                    <ul>
+                        <li><a href="">繁體中文</a></li>
+                        <li><a href="">English</a></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+    <div class="container-fluid animated bounceInRight">
+        <div class="header row">
+            <div class="header-left col-lg-4 col-md-12">
+                <header-left v-bind:prop-menu="menu"></header-left>
+            </div>
+            <div class="header-right col-lg-8 col-md-12 ">
+                 <div class="header-right-text">
+                    <a href="">
+                        <h2>國際有限公司</h2>
+                        <h3>專業保養品、面膜代工、醫美及含藥化妝品製造商</h3>
+                    </a>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="introduction row" :class="animateInto" >
+            <div class="introduction-left  col-lg-4">
+                <div class="introduction-left-one">
+                    <a href=""><h2>我們是您最佳的選擇</h2></a>
+                    <img src="images/header_002.jpg" alt="">
+                </div>
+            </div>
+            <div class="introduction-right  col-lg-8">
+                <div class="introduction-right-text">
+                    <h2>我們是您最佳的選擇</h2>
+                    <p>悅美國際有限公司創立於西元1996年，經營項目主要為個人肌膚保養品研發量產及代工製造，</p>
+                    <p>創始人既負責人XXX藥師，藉由專業的調製技術開發安全穩定的保養品配方，</p>
+                    <p>至今悅美已有齊全的研發團隊與多年累積產品開發經驗，及多項專利配方。</p>
+                    <p>本廠已通過ISO9001認證，並於2013年遷廠至中壢新廠，藉由更嚴謹的生產規格與更優良的服務品質。</p>
+                    <p>望成為您可信賴的合作夥伴。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid about">
+        <div class="about-one" :class="animateInto">
+            <a href="">
+                <h2>悅美國際 Pretty International</h2>
+                <strong>ISO9001:2008 And ISO22716:2007 Creatified Skin Care Menufacturer</strong>
+                <p>專業肌膚保養品製造工廠 &nbsp; 面膜軟膜及全系列個人肌膚保養品</p>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <content-product :post-product-msg="productMsg" :post-scroll-top="scrollTop" :post-body-w-h="bodyWH"></content-product>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="midNav">
+            <mid-nav v-bind:prop-menu="menu" v-bind:prop-random-news="randomNews"></mid-nav>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="footer">
+            <p>悅美國際有限公司&nbsp;版權所有©2018&nbsp;台北市XX區民族路X段XX巷X號&nbsp;TEL:02-XXXX-XXXX&nbsp;FAX:02-XXXX-XXXX</p>
+        </div>
+    </div>
+</div>
+<template id="mid-nav">
+    <div class="midNav-one">
+        <div class="midNav-one-box">
+            <p>{{midNavTitle[0]}}</p>
+            <div class="new-hr">
+                <span></span>
+            </div>
+            <ul>
+                <li v-for="item in propMenu">{{item}}</li>
+            </ul>
+        </div>
+        <div class="midNav-one-box">
+            <p>{{midNavTitle[1]}}</p>
+            <div class="new-hr">
+                <span></span>
+            </div>
+            <ul>
+                <li v-for="item in propRandomNews"><em>{{item.date}}</em>&nbsp;{{item.content}}</li>
+            </ul>
+        </div>
+        <div class="midNav-one-box">
+            <p>{{midNavTitle[2]}}</p>
+            <div class="new-hr">
+                <span></span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+                <div class="input-group-prepend">
+                    <button class="btn btn-primary"><img src="images/icon/search.png" alt="" width="20px"></button>
+                </div>
+            </div>
+        </div>
+        <div class="midNav-one-box">
+            <p>{{midNavTitle[3]}}</p>
+            <div class="new-hr">
+                <span></span>
+            </div>
+            <div class="midNav-logo">
+                <a href=""><img src="images/logo.png" alt="" width="108"></a>
+            </div>
+        </div>           
+    </div>
+</template>
+<template id="content-product">
+    <div class="content-one row no-gutters" :class="animateInto">
+        <div class="content-one-box col-11 col-md-5 " v-for="item in postProductMsg" @mouseover="productHover">
+            <div class="content-one-box-text">
+                <p>{{item.date}}</p>
+                <h2>{{item.textTitle}}</h2>
+                <p>{{item.textContent}}</p>
+            </div>
+            <img :src="item.img" class="content-Img" alt="">
+        </div>
+    </div>
+</template>
+<template id="header-left">
+    <div class="header-left-one">
+        <ul class="header-left-one-img">
+            <li v-for="(item,num) in icon">
+                <a href="#">
+                   <img :src="item.img" :title="item.word" width="35px" alt="">
+                </a>
+            </li>
+        </ul>
+        <div class="logo">
+            <a href=""><img src="images/logo.png" title="首頁" alt="" width="100px"></a>
+        </div>
+        <div class="fold-btn" @click="foldMenu">
+            <img src="images/icon/navButton_001.png" alt="" width="40px">
+        </div>
+        <ul class="menu">
+            <li v-for="item in menu"><a href="">{{item}}</a></li>
+        </ul>
+    </div>
+</template>
+<!--jq掛載-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--bootstrao掛載-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--vue掛載-->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!--firebase掛載-->
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<!--自己的JS掛載-->
+<script src="index.js"></script>
+</body>
+</html>
